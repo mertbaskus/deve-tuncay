@@ -1,0 +1,71 @@
+/* Temel Stil */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+}
+
+/* Form Elemanları Stili */
+form {
+    max-width: 400px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+/* Checkbox Stili */
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+/* Buton Stili */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* İki Bölümlü Sayfa Stili */
+#tirAriyorum,
+#ilanVerButonu {
+    display: inline-block;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#tirAriyorum:hover,
+#ilanVerButonu:hover {
+    background-color: #ddd;
+}
+
+
+/* Yük sahibi için ilan verme kodları */
+
+
+#ilanVer{
+    display: none;
+}
