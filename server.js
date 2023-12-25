@@ -4,6 +4,7 @@ const http = require("http");
 const path = require("path");
 const sqlite3 = require("sqlite3");
 const socketIo = require("socket.io");
+const bodyParser = require("body-parser");
 
 
 // Initialization Kodları
@@ -173,6 +174,69 @@ app.use(express.static(__dirname + "/public"));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/tirci.html");
 });
+
+
+
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
+
+app.get('/arayuz', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/arayuz.html'));
+});
+
+app.post('/giris', (req, res) => {
+  const { email, parola } = req.body;
+
+  db.get('SELECT * FROM kullanicilar WHERE email = ? AND parola = ?', [email, parola], (err, row) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ deneme: false, mesaj: 'Server hatası, kaydol veya yeniden dene' });
+    } else if (row) {
+      // Giriş başarılı, '/arayuz' rotasına yönlendir
+      res.redirect('/arayuz');
+    } else {
+      res.json({ deneme: false, mesaj: 'Kullanıcı adı veya parola yanlış' });
+    }
+  });
+});
+
+
+
+app.post("/kaydol", (req, res) => {
+  var {
+    ad,
+    soyad,
+    email,
+    parola,
+  } = req.body;
+  console.log(
+    ad,
+    soyad,
+    email,
+    parola,
+  );
+
+  db.run(
+    "INSERT INTO kullanicilar (ad, soyad, email, parola) VALUES (?, ?, ?, ?)",
+    [
+    ad,
+    soyad,
+    email,
+    parola,
+    ],
+    function (err) {
+      if (err) {
+        return console.error(err.message);
+      }
+      console.log(`kayıt başarılı`);
+    }
+  );
+
+  res.sendFile(__dirname + "/public/login2.html");
+});
+  
+
+
 
 server.listen(3000, () => {
   console.log("Sunucu 3000 portunda çalışıyor...");
