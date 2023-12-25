@@ -192,7 +192,7 @@ app.post('/giris', (req, res) => {
       console.error(err);
       res.status(500).json({ deneme: false, mesaj: 'Server hatası, kaydol veya yeniden dene' });
     } else if (row) {
-      // Giriş başarılı, '/arayuz' rotasına yönlendir
+     
       res.redirect('/arayuz');
     } else {
       res.json({ deneme: false, mesaj: 'Kullanıcı adı veya parola yanlış' });
