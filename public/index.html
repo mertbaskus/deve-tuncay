@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    <title>lojistik projesi</title>
+    <style>
+        body {
+            background: url(./CSS/abc.jpg);
+            margin-top: 0%;
+            display: flex;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            justify-content: center;
+        }
+    </style>
+     <div id="proje-basligi">Lojistik Projesi</div>
+</head>
+<body>
+    <nav>
+        <div>
+            <ul>
+                <button><a href="http://localhost:3000/login.html">giriş yap </a></button>
+                <button><a href="http://localhost:3000/login.html">kaydol </a></button>
+            </ul>
+        </div>
+    </nav>
+    <div class="header">
+        <form action="/arayuz" method="get" class="arama-formu">
+            <input type="text" name="konum" placeholder="kalkış yeri..." required>
+            <input type="text" name="hefefKonum" placeholder="varış yeri..." required>
+            <input type="text" name="yuklemeTarihleri" placeholder="yükleme tarihleri" required>
+            <button type="submit">Ara</button>
+        </form>
+    </div>
+   
+    <div class="blok">
+        <h2>Blok 1 Başlık</h2>
+        <p>Bu blok içindeki metin...</p>
+    </div>
+
+    <div class="blok">
+        <h2>Blok 2 Başlık</h2>
+        <p>Bu blok içindeki metin...</p>
+    </div>
+
+    <div class="blok">
+        <h2>Blok 3 Başlık</h2>
+        <p>Bu blok içindeki metin...</p>
+    </div>
+
+
+
+    <div id="sohbet-botu">
+        <div id="sohbet-penceresi">
+            <div id="sohbet-mesajlar"></div>
+        </div>
+        <input type="text" id="kullanici-mesaji" placeholder="Mesajınızı yazın...">
+        <button onclick="gonder()">Gönder</button>
+    </div>
+    <script src="JS/index.js"></script>
+</body>
+</html>

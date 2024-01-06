@@ -1,0 +1,153 @@
+/* Temel Stil */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: url('./CSS/abc.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#proje-basligi {
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: blue;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    font-size: 40px;
+}
+
+header, section, #sohbet-botu {
+    padding: 20px;
+    margin: 20px;
+}
+
+/* Form Elemanları Stili */
+form {
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    flex: 1;
+    padding: 8px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+/* Buton Stili */
+button {
+    background-color:lightskyblue;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: lightskyblue;
+}
+
+/* İki Bölümlü Sayfa Stili */
+#profilButonu,
+#sohbet-botu {
+    position: fixed;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#profilButonu {
+    top: 20px;
+    right: 20px;
+}
+
+#mesajlarButonu {
+    position: fixed;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    top: 20px;
+    right: 60px; /* Adjusted the position to avoid overlap */
+}
+
+#yukAriyorumButonu,
+#ilanVerButonu2,
+#yukAriyorumButonu,
+#ilanVerButonu {
+    display: inline-block;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#yukAriyorumButonu:hover,
+#ilanVerButonu2:hover,
+#yukAriyorumButonu:hover,
+#ilanVerButonu:hover {
+    background-color: #ddd;
+}
+
+/* Yük sahibi için ilan verme kodları */
+#ilanVer2, #yukAriyorum, #ilanVer {
+    display: none;
+}
+
+/* Sohbet Botu Stili */
+#sohbet-botu {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#sohbet-penceresi {
+    border: 1px solid #ddd;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+#kullanici-mesaji {
+    padding: 8px;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+
+#sohbet-mesajlar {
+    padding: 10px;
+}
+
+#sohbet-botu button {
+    background-color: lightskyblue;
+    color: white;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#sohbet-botu button:hover {
+    background-color: lightskyblue;
+}

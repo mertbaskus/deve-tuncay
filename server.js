@@ -1,4 +1,4 @@
-// const ejs = require("ejs");
+
 const express = require("express");
 const http = require("http");
 const path = require("path");
@@ -7,30 +7,24 @@ const socketIo = require("socket.io");
 const bodyParser = require("body-parser");
 
 
-// Initialization Kodları
+
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server)
 
 const db = new sqlite3.Database("mesajlar.db");
 
-// app.use komutları
+
 app.use(express.urlencoded({ extended: false }));
 
-// EJS kullanımını belirtiyoruz
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./views"));
 
-app.get("/yuksahibi", (req, res) => {
-  res.sendFile(__dirname + "/public/yuksahibi.html");
-});
 
-app.get("/tirci", (req, res) => {
-  res.sendFile(__dirname + "/public/tirci.html");
-});
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/login.html");
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.post("/gonder", (req, res) => {
@@ -38,31 +32,34 @@ app.post("/gonder", (req, res) => {
     konum,
     hedefKonum,
     yukMiktari,
-    fiyatTeklifi,
-    sonTeslimatTarihi,
-    sigortaIstegi,
+    dorseTipi,
+    yuklemeTarihleri,
+    sonTeslimatTarihleri,
     isTanimi,
+    fiyatTeklifi,
   } = req.body;
   console.log(
     konum,
     hedefKonum,
     yukMiktari,
+    dorseTipi,
+    yuklemeTarihleri,
+    sonTeslimatTarihleri,
+    isTanimi,
     fiyatTeklifi,
-    sonTeslimatTarihi,
-    sigortaIstegi,
-    isTanimi
   );
 
   db.run(
-    "INSERT INTO yuk_sahibi_ilanlari (konum, hedef_konum, yuk_miktari, fiyat_teklifi, son_teslimat_tarihi, sigorta_istegi, is_tanimi) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO yuk_sahibi_ilanlari (konum, hedef_konum, yuk_miktari, dorse_tipi, yukleme_tarihleri, son_teslimat_tarihleri, is_tanimi, fiyat_teklifi) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
     [
       konum,
       hedefKonum,
       yukMiktari,
-      fiyatTeklifi,
-      sonTeslimatTarihi,
-      sigortaIstegi,
+      dorseTipi,
+      yuklemeTarihleri,
+      sonTeslimatTarihleri,
       isTanimi,
+      fiyatTeklifi,
     ],
     function (err) {
       if (err) {
@@ -72,39 +69,34 @@ app.post("/gonder", (req, res) => {
     }
   );
 
-  res.sendFile(__dirname + "/public/yuksahibi.html");
+  res.sendFile(__dirname + "/public/arayuz.html");
 });
 
 app.post("/gonder2", (req, res) => {
   var {
     konum,
     hedefKonum,
-    yukMiktari,
-    fiyatTeklifi,
-    sonTeslimatTarihi,
-    sigortaIstegi,
-    isTanimi,
+    dorseTipi,
+    yukTipi,
+    aciklama,
+
   } = req.body;
   console.log(
     konum,
     hedefKonum,
-    yukMiktari,
-    fiyatTeklifi,
-    sonTeslimatTarihi,
-    sigortaIstegi,
-    isTanimi
+    dorseTipi,
+    yukTipi,
+    aciklama,
   );
 
   db.run(
-    "INSERT INTO tirci_ilanlari (konum, hedef_konum, yuk_miktari, fiyat_teklifi, son_teslimat_tarihi, sigorta_istegi, is_tanimi) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO tirci_ilanlari (konum, hedef_konum, dorse_tipi, yuk_tipi, aciklama) VALUES (?, ?, ?, ?, ?)",
     [
       konum,
-      hedefKonum,
-      yukMiktari,
-      fiyatTeklifi,
-      sonTeslimatTarihi,
-      sigortaIstegi,
-      isTanimi,
+    hedefKonum,
+    dorseTipi,
+    yukTipi,
+    aciklama,
     ],
     function (err) {
       if (err) {
@@ -114,7 +106,7 @@ app.post("/gonder2", (req, res) => {
     }
   );
 
-  res.sendFile(__dirname + "/public/tirci.html");
+  res.sendFile(__dirname + "/public/arayuz.html");
 });
   
 
@@ -138,7 +130,7 @@ function a2() {
       throw err;
     }
 
-    // Tüm sütun verilerini içeren bir dizi oluştur
+   
     const allColumnData = rows.map((row) => {
       const rowData = {};
       columnNames.forEach((column) => {
@@ -147,24 +139,24 @@ function a2() {
       return rowData;
     });
 
-    // Sonuçları yazdır veya başka bir şey yapabilirsiniz
+   
     console.log(allColumnData);
     allColumnData.shift()
     sayi = allColumnData.length;
-    allColumnDataFixed = JSON.stringify(allColumnData);  // json a çevrilecek 
+    allColumnDataFixed = JSON.stringify(allColumnData);  
     console.log(allColumnDataFixed);
 
-    // Veriyi işledikten sonra, socket üzerinden istemciye gönder
+    
     io.emit("send", allColumnDataFixed);
   });
 }
 
 io.on("connection", (socket) => {
   socket.on("test", (recieve) => {
-    // tirci.html dosyasını gönder
+    
     res.sendFile(__dirname + "/public/tirci.html");
     
-    // Veriyi gönder
+   
     a2();
   });
 });
@@ -204,12 +196,14 @@ app.post('/giris', (req, res) => {
 
 app.post("/kaydol", (req, res) => {
   var {
+    tc,
     ad,
     soyad,
     email,
     parola,
   } = req.body;
   console.log(
+    tc,
     ad,
     soyad,
     email,
@@ -217,8 +211,9 @@ app.post("/kaydol", (req, res) => {
   );
 
   db.run(
-    "INSERT INTO kullanicilar (ad, soyad, email, parola) VALUES (?, ?, ?, ?)",
+    "INSERT INTO kullanicilar (tc, ad, soyad, email, parola) VALUES (?, ?, ?, ?, ?)",
     [
+    tc,  
     ad,
     soyad,
     email,
@@ -232,7 +227,7 @@ app.post("/kaydol", (req, res) => {
     }
   );
 
-  res.sendFile(__dirname + "/public/login2.html");
+  res.sendFile(__dirname + "/public/login.html");
 });
   
 

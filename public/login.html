@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
+    <title>giriş yap</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lojistik projesi</title>
+    <link rel="stylesheet" type="text/css" href="CSS/login.css"> 
+
     <style>
         body {
             background: url(./CSS/abc.jpg);
@@ -15,15 +17,32 @@
             justify-content: center;
         }
     </style>
+    <div id="proje-basligi">Lojistik Projesi</div>
 </head>
 <body>
-    <nav>
-        <div>
-            <ul>
-                
-                <button><a href="http://localhost:3000/login2.html">giriş yap </a></button>
-            </ul>
+    <div class="main">    
+        <div class="kaydol">
+            <form action="/kaydol" method="post">
+                <label for="chk" aria-hidden="true">kaydol</label>
+                <input type="text" name="tc" placeholder="tc" required="">
+				<input type="text" name="ad" placeholder="ad" required="">
+                <input type="text"  name="soyad" placeholder="soyad" required="">
+                <input type="email" name="email" placeholder="e-mail" required="">
+                <input type="password" name="parola" placeholder="parola" required="">
+                <button id="kaydolButonu">kaydol</button>
+            </form>
         </div>
-    </nav>
+
+        <div class="giris">
+            <form action="/giris" method="post">
+                <label for="chk" aria-hidden="true">giriş yap</label>
+                <input type="email" name="email" placeholder="e-mail" required="">
+                <input type="password" name="parola" placeholder="parola" required="">
+                <button id="girisButonu">giriş yap</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./JS/login.js"></script>
 </body>
 </html>

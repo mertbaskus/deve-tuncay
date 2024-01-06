@@ -1,19 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>arayuz</title>
+    <link rel="stylesheet" href="./CSS/arayuz.css" />
+    <style>
+        body {
+            background: url(./CSS/abc.jpg);
+            margin-top: 0%;
+            display: flex;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            justify-content: center;
+        }
+    </style>
+    <div id="proje-basligi">Lojistik Projesi</div>
 </head>
+
 <body>
-    <nav>
+    <div class="header">
+        <form action="/arayuz" method="get" class="arama-formu">
+            <input type="text" name="konum" placeholder="kalkış yeri..." required>
+            <input type="text" name="hefefKonum" placeholder="varış yeri..." required>
+            <input type="text" name="yuklemeTarihleri" placeholder="yükleme tarihleri" required>
+            <button type="submit">Ara</button>
+        </form>
+    </div>
+
+    <section>
+        <div id="profilButonu">Profil</div>
+        <div id="mesajlarButonu">Mesajlar</div>
+        <div id="yukAriyorumButonu">Tır ilanları</div>
+        <div id="yukAriyorumButonu">Yük ilanları</div>
+        <div id="ilanVerButonu2">tırcı olarak İlan ver</div>
+        <div id="ilanVerButonu">yük ilanı ver İlan ver</div>
+
+    </section>
+
+    <div onclick="fonksiyon()">Fetch</div>
+
+    <div id="gelenIlanVerisi">
         <div>
-            <ul>
-                <button><a href="http://localhost:3000/tirci.html">Tırcının sayfa</a></button>
-                <button><a href="http://localhost:3000/yuksahibi.html">Yük sahibinin sayfa</a></button>
-                <button>profilim</button>
-            </ul>
+            <span id="v1">a</span>
+            <span id="v2">b</span>
+            <span id="v3">c</span>
+            <span id="v4">d</span>
+            <span id="v5">e</span>
+            <span id="v6">f</span>
+            <span id="v7">g</span>
         </div>
-    </nav>
+    </div>
+
+    <section id="ilanVer2">
+        <div>
+            <form action="/gonder2" method="post">
+                <label for="konum">Konum:</label>
+                <input type="text" id="konum" name="konum" required /><br />
+
+                <label for="hedefKonum">Hedef Konum:</label>
+                <input type="text" id="hedefKonum" name="hedefKonum" required /><br />
+
+                <label for="dorseTipi">Dorse Tipi:</label>
+                <input type="text" id="dorseTipi" name="dorseTipi" required /><br />
+
+                <label for="yukTipi">Yük Tipi:</label>
+                <input type="text" id="yukTipi" name="yukTipi" required /><br />
+
+                <label for="aciklama">Açıklma:</label>
+                <input type="text" id="aciklama" name="aciklama" required /><br />
+                
+                
+
+                <button type="submit">Onayla</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="ilanVer">
+        <div>
+            <form action="/gonder" method="post">
+                <label for="konum">Konum:</label>
+                <input type="text" id="konum" name="konum" required><br>
+
+                <label for="hedefKonum">Hedef Konum:</label>
+                <input type="text" id="hedefKonum" name="hedefKonum" required><br>
+
+                <label for="yukMiktari">Yük Miktarı:</label>
+                <input type="text" id="yukMiktari" name="yukMiktari" required><br>
+
+                <label for="dorseTipi">Dorse Tipi:</label>
+                <input type="text" id="dorseTipi" name="dorseTipi" required><br>
+
+                <label for="yuklemeTarihleri">Yükleme Tarihleri:</label>
+                <input type="text" id="yuklemeTarihleri" name="yuklemeTarihleri" required><br>
+
+                <label for="sonTeslimatTarihleri">Son Teslimat Tarihleri:</label>
+                <input type="text" id="sonTeslimatTarihleri" name="sonTeslimatTarihleri" required><br>
+
+                <label for="isTanimi">İş Tanımı:</label>
+                <input type="text" id="isTanimi" name="isTanimi" required><br>
+
+                <label for="fiyatTeklifi">Fiyat Teklifi:</label>
+                <input type="text" id="fiyatTeklifi" name="fiyatTeklifi" required><br>
+                
+
+                <button type="submit">Onayla</button>
+        </div>
+    </section>
+
+
+    <div id="sohbet-botu">
+        <div id="sohbet-penceresi">
+            <div id="sohbet-mesajlar"></div>
+        </div>
+        <input type="text" id="kullanici-mesaji" placeholder="Mesajınızı yazın...">
+        <button onclick="gonder()">Gönder</button>
+    </div>
+    
+    <script src="./JS/arayuz.js"></script>
 </body>
+
 </html>
